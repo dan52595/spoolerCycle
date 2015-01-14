@@ -1,4 +1,9 @@
-# thermal cycle testing
+"""
+Cycle Program for Spooler Thermal Testing
+Daniel Lefebvre
+Jan 14, 2014
+"""
+
 import time
 import sys, os
 from select import select   
@@ -7,7 +12,12 @@ def cycle(cli, *args):
     max_vel = 600
     cli.set("S-SPL-DEF-VEL", str(max_vel))
     
-    len = input('How many meters to cycle: ')
+    enough = input("Is there sufficient filament on both spools? (y/n): "
+    if enough != y
+        sys.exit("Oops! Try Again!")
+    print “Good to go!”
+    
+    len = input('How many estimated meters to cycle: ')
     len = -1.0 * float(len)
     total = input('How many cycles in all: ')
     total = float(total)
@@ -15,14 +25,12 @@ def cycle(cli, *args):
     
     cli.set("S-CTRL-MODE", "3")
     len1 = len2 = dlen = 0
-    len1 = cli.get("LENGTH-PAID")
     interval = 0.1
     print_update = 0.5    # interval between printed updates (sec)
     n = i = 1
 
     while (i <= total):
         while (dlen > len):
-            vel = min(vel + 20, max_vel)
             vel_in = str(-1 * vel)      
             cli.set("S-SPL-VEL-CMD", vel_in)
             time.sleep(interval)
